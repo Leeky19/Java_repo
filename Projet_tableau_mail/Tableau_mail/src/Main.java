@@ -10,10 +10,11 @@ public class Main {
                 "paul@sfr.fr",
                 "lise@gmail.com",
                 "thierry@gmail.com",
+                "marie@isitech.fr",
                 "marie@isitech.fr"
         };
 
-        int totalEmails = emails.length; //longueur de la string
+        int totalEmails = emails.length;
         int gmailCount = 0; //total des comptes gmail
         int sfrCount = 0;
         int orangeCount = 0;
