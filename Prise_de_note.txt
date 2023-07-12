@@ -1,0 +1,432 @@
+Java : 
+- langage systeme qui se veut simple, orianté objet et interprété
+- but : optimisation du temp des cycles de dev (nottamaent partie compliation et exécution).
+- Arrivé en temps que rep debut années 90, car les temps de dev en c++ trop long.
+- Les applicatin produites sont portables (dispo sur plusieurs plateforme) : cross plateform. (tous les os qui sont capable d'éxecuté du java.)
+- Par rapport au C++ la gestion de la mémoire et des erreurs est simplifiées.
+- il est possible de creer des application multi threadés
+- les application sont ttres rebuste et securisé grace à des verifications du bytecode avant exécution.
+- option possible pour faire du java : eclipse, netbeans, intellij 
+- prendre une version compatible v17
+
+## La platefrome JAVA
+![[Pasted image 20230710095552.png]]
+- JDK : Java Dev Kit
+- API
+- javac : le compilateur java
+- JRE (Java runtime env) : l'environement s'installe sur la machien cliente. Il propose notament l'outil Java qui permet d'executer les programme java.
+- JVM (Java virtual machine): permet l'execution du programme passé en paramettre de la commande 'java'
+
+## La machine virtuelle Java
+
+Elle est mise à dispo pour de multiple OS.
+
+#### Ses roles sont muultiples :
+- elle charge des classes (et leur bytecode), a l'instaciation d'une classe c'est elle qui charge le byteode à interpréter.
+- elle gere la memoire, les pointeurs et les référence.
+- Elle gere aussi la liberation de la memoire : 'Garbage Collector'
+- elle gere aussi la securité interfaçage avec du code natif.
+
+## L'API JAVA
+
+Esemble de logiciels pré conçu pour fournir un grand nombre de fonctionnalités.
+L'API Java 17 : 
+- 21 modules
+- 220 packages (l'équivalent des bibliothèques de la classes en C# ou des librairies en langage C)
+- Plus de 4000 classes et interfaces mise à dipso
+
+### Deux implémentation pour une plateforme
+- Oracle JDK
+- OpenJDK (possible d'avoir une version open source)
+
+- il est recommandé d'ajouter 'JAVA_HOME' en tant que variable d'environnement:
+'''
+:\\user\dev\desktop\java\jdk-17.0.2
+'''
+
+Ensuite vous modifiez la variable d'environement PATH avec l'entrée 
+'''
+...;%JAVA_HOME%\bin
+'''
+
+### L'IDE
+
+Eclipse IntelliJ
+
+### MySQL
+
+Vous devez installer mySQL : 
+- 'on premise'
+- avec wamp (mamp, xamp, ...)
+- avec Docker
+- dans le cloud
+- ...
+
+
+### Premier programme en JAVA
+
+Un programme java est une collection de fichiers java destiné à fonctionner ensemble.
+
+
+Il faut plusieurs étapes pour l'exécution d'un programme JAVA : 
+- une compilation : code source (en java) -> bytecode (langage intermédiaire). Le bytecode n'est pas du binaire.
+- c'est la JVM qui charge le bytecode et le compile à la volée (JIT : juste in time) pour exécuter du code qui sera compréhensible par la machine hote.
+
+public/private static void main (....)
+
+retourne = void
+
+
+pour utiliser un compilateur : 
+```sh
+java nom_de_notre_fichier_source
+```
+
+
+fichier source en .java puis ensuite l'avoir compilé passe en bytecode et passe ensuite avec l'exécution dans le langage machine.
+
+## Structure des programmes JAVA
+
+en java, tout est objet : 
+
+```java 
+public class Nom
+{
+	//notre code java
+	public statric void main (String[] args)
+	{
+		// code java
+	}
+	//code java
+}
+```
+déclarer les variable juste avant de les utiliser
+
+
+### Les variables en java
+
+Instance de classe : objet creer à partir d'une classe 
+
+les catégories de variables :
+- **les variables d'instance** : n'existe que si une instance de classe est dispo. Chaque instance possède sa propre version de la variable.
+- **les variables de classes** : elles sont aussi déclarées à l'intérieur d'une classe mais avec le mot clé `static` . La variable de classse est dispo directement depuis la classe existe en un exemplaire unique. On peut avoir 50 instances d'une même classe, mais la valeur d'une variable de classe est unique.
+- **les variable locales**: elles sont déclarées à l'intérieur d'une méthode.
+
+
+##### La nomenclature des variables : 
+- le nom d'une variable commence par une lettre
+- lettre, chiffre, underscore
+- nombre illimité de caractères
+- sensible à la casse ( a != A)
+- mots clefs
+- camel case : le nom commence par une minuscule et chaque nouveau mot commence par une majuscule.
+
+
+##### Les types de variable :
+
+On distingue deux type de variables :
+- les types valeurs : celles qui stockent des valeurs
+- les types de référence : celles qui ne stockent pas de valeur
+
+
+![[Pasted image 20230710140411.png]]
+
+les types de valeurs désignent les types primitifs, on en compte 4 en java : entier, décimaux, les chars et les bools.
+
+les type références désignent un type plus complexe : un ensemble cohérent de variable. 
+
+![[Pasted image 20230710140720.png]]
+
+##### La déclaration des variables
+En java : 
+```java
+[modificateur] type maVariable;
+```
+on peut déclarer plusieurs varible du même type sur la même ligne
+```
+type var1, var2, var3, var4, ...;
+```
+Exemple :
+```java
+int ageDeTom;
+Date armistice, noel;
+```
+
+Pour initialiser une variable 
+```java
+int frenchWorldCupYear = 1998;
+```
+
+attention pour les dates, elles sont toutes set au 1er Javier 1970.
+pour modifer la date de l'année attention : pour year = 2023,  ecrire year =123
+
+
+##### Les types d'entiers
+![[Pasted image 20230710145145.png]]
+
+##### Les types décimaux
+![[Pasted image 20230710145228.png]]
+
+attention 
+ceci est un float :
+						float f= -140.4f;
+
+ceci est un double : 
+						f= -140.4;
+
+##### Les constantes
+
+Il arrive que des variable ne doivent pas être modifiées au cours de l'exécution du programme : il convient alors de définir des constantes.
+
+Pour définir une constante on utilise le mot clé `final`:
+```java
+final double PI= 3,14159265358979323846264338327950288419716939937510582;
+```
+
+L'initialisation de la constante est obligatoire lors de sa déclaration
+Souvent les constantes sont définies comme membre statiques.
+Par convention on les écrit en majuscules.
+
+###### Les énumérations : 
+Elles permettent de definir un ensemble de constante :
+```java
+public enum Mouth{
+JANVIER
+FEVRIER
+MARS
+AVRIL
+MAI
+JUIN
+JUILLET
+AOUT
+SEPTEMBRE
+OCTOBRE
+NOVEMBRE
+DECEMBRE
+}
+```
+
+L'equivalent avec une classe :
+
+```java
+public class Mouth
+{
+	public static final int JANVIER = 0;
+}
+```
+
+la déclaration d'une enum peut être considérer comme l'utilisation d'une "classe cachée". Cette classe érite de `java.lang.Enum`
+
+Pour creer un dalton :
+```java
+Dalton temel = Dalton.AVERELL;
+```
+
+### Les tableaux
+
+
+```java
+int [] unTableau;
+
+//on doit préciser la taille du tableau entre crochet
+int [] autreSyntaxe = {3, 4, 5, 6, 7, 8};
+```
+
+On peut acceder aux éléments d'un tableau de cette manière : 
+```java
+autreSyntaxe[4];
+```
+
+Si vous tentez d'acceder à un index inexistant vous aller obtenir une expression de type: 
+`ArrayIndexOutOfBoundException`
+
+Il est possible de trvailler avec des éléments avec des tableaux à plusieurs dimensions : 
+![[Pasted image 20230710161541.png]]
+
+La syntaxe pour récupérer des éléments dans un tableau en 2D ets la suivante :
+
+```java
+int elemTableau2D= tableau[0][1];
+```
+
+Exemple initialisation d'un tableau 2D :
+![[Pasted image 20230710162205.png]]
+
+autre méthode de création:
+```java
+int[][]matrice = new int [2][];
+matrice[0] = new int [4];
+matrice[1] = new int [4];
+```
+
+Pour les pros : 
+```java
+//permet de definir un tableau 2D avec deux lignes et trois colonnes
+int [][] encoreUneAutreSyntaxe = {{1, 2, 3}, {23, 21, 22}};
+//attention : creer un tableau de deux ligne et trois collones 
+```
+
+##### Exercice : 
+Creer un tableau contenant 10 `String`, et remplir ce tableau avec les adresses mail, exemple :
+```
+"jpp@sfr.fr";
+"tom@gmail.com";
+"fred@sfr.fr";
+"victor@sfr.fr";
+"chris@sfr.fr";
+"robert@orange.fr";
+"paul@sfr.fr";
+"lise@gmail.com";
+"thierry@gmail.com";
+"marie@isitech.fr"
+```
+Calculez le pourcentage de fournisseur de service mail.
+(pour une adresse mail @ gmail.com le fournisseur est gmail).
+
+Consultez la javadoc : 
+- String : 
+	https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html
+
+
+
+faire une fct qui prend en par un tab et ça retourne le pourcentage, sans liste de fournisseurs en dur.
+
+Pour aller plus loin : 
+- placer ce code dans une fonction 
+- elle doit prendre en parametre un tableau de String qui contient des adresses mail
+- la fonction ne doit pas avoir connaissance du nom des fournisseurs
+- elle doit toujours afficher le pourcentage de fournisseur de services mail, que que soit le nombre de fournisseurs
+
+### Les chaines de caractères
+
+Les chaines de caractères sont des objets en java, elles sont donc soumises aux règles de la programmation orientée objet.
+
+```java
+String chaine = "une chaine de caracteres"
+```
+
+En mémoire voici ce que ça donne : ![[Pasted image 20230711113449.png]]
+
+En general on a tendance a considerer les String comme des types primitifs, mais ce n'est pas le cas. En realite, lorsqu'on cree une string on cree une instance de la classe `String` qui contient un tableau de char.
+```java
+String chaine = new String("une chaine de caracteres");
+```
+
+Apres sa creation une chaine de caracteres ne peut plus etre modifiee. On dit qu'elle est `immutable`.
+
+```java
+\* cette instruction ne compile pas *\
+chaine = chaine + " et une autre chaine";
+```
+
+La classe String nous met à disposition de nombreux outils pour manipuler les chaines de caractères.
+
+```java
+String chaine = "une chaine de caracteres";
+chaine.length(); // retourne la taille de la chaine
+chaine.charAt(0); // retourne le caractere a l'index 0
+chaine.substring(0, 4); // retourne la sous chaine de caracteres de l'index 0 a 4
+chaine.indexOf("chaine"); // retourne l'index de la premiere occurence de "chaine"
+chaine.replace("chaine", "string"); // remplace la premiere occurence de "chaine" par "string"
+chaine.toUpperCase(); // retourne la chaine en majuscule
+chaine.toLowerCase(); // retourne la chaine en minuscule
+chaine.trim(); // supprime les espaces en debut et fin de chaine
+chaine.split(" "); // retourne un tableau de String en decoupant la chaine a chaque espace
+chaine.equals("une chaine de caracteres"); // retourne true si les deux chaines sont identiques
+chaine.equalsIgnoreCase("UNE CHAINE DE CARACTERES"); // retourne true si les deux chaines sont identiques en ignorant la casse
+chaine.startsWith("une"); // retourne true si la chaine commence par "une"
+chaine.endsWith("res"); // retourne true si la chaine se termine par "res"
+```
+
+#### Comparer les chaines de caractères
+
+En java il est impossible de comparer deux chaines de caracteres avec l'operateur `==`
+
+```java
+String chaine1 = "une chaine de caracteres";
+String chaine2 = "une chaine de caracteres";
+chaine1 == chaine2; // retourne false
+```
+
+Pour comparer deux chaines de caracteres il faut utiliser la methode `equals`
+
+```java
+String chaine1 = "une chaine de caracteres";
+String chaine2 = "une chaine de caracteres";
+chaine1.equals(chaine2); // retourne true
+```
+
+Cette fonction compare les chaines de caracteres caractere par caractere.
+
+La methode format permet de formater une chaine de caracteres en utilisant des marqueurs de position.
+
+```java
+boolen estVrai = true;
+int entier = 10;
+double decimal = 10.5;
+String chaine = "une chaine de caracteres";
+System.out.println("un booleen : %b, un entier : %d, un decimal : %f, une chaine : %s", estVrai, entier, decimal, chaine);
+```
+
+ou encore
+
+```java
+boolean b=true;
+String s="chaine";
+int i=56;
+double d=5.5;
+System.out.println(String.format("boolean : %b %n" +
+                 "chaine de caractères : %s %n" +
+                 "entier : %d %n" +
+                 "entier en hexadécimal : %x %n" +
+                 "entier en octal : %o %n" +
+                 "décimal : %f %n" +
+                 "décimal précis au dixième : %.1f %n" +
+                 "décimal au format scientifique : %e %n",
+                 b,s,i,i,i,d,d,d));
+```
+
+##### Exercice 2 :
+
+Générer trois nombres aléatoires compris entre 0 et 1000, puis vérifier si vous avez deux nombres pairs suivis par un nombre impair. Si ce n’est pas le cas, recommencer jusqu’à ce que vous ayez la combinaison pair, pair, impair. Afficher ensuite le nombre d’essais nécessaires pour obtenir cette combinaison.
+
+##### Exercice 3 :
+
+Créez un juste prix en console avec un affichage du temps et du nombre de tentatives mises par l'utilisateur pour trouver le juste prix.
+
+##### Exercice 4 :
+
+Ecrire un programme qui demande à l’utilisateur de saisir un nombre entier et qui affiche sa valeur en binaire, octale et hexadécimale.
+
+La conversion depuis une chaine de caractères: la classe Integer
+
+La classe Integer permet de convertir une chaine de caractères en un entier.
+
+```java
+String chaine = "10";
+int entier = Integer.parseInt(chaine); // conversion explicite
+```
+
+L'inférence de type
+
+Depuis Java 10, il est possible de déclarer une variable sans préciser son type. Le compilateur va alors inférer le type de la variable en fonction de la valeur qui lui est affectée.
+
+```java
+var entier = 10;
+var decimal = 10.5;
+var chaine = "une chaine de caracteres";
+```
+
+La programmatin orientee objet
+
+##### Exercice 5 :
+
+Créer une classe représentant un article d’un magasin de vente par en ligne. Un article est caractérisé par sa référence, sa désignation, son prix. Créer ensuite une méthode main permettant de tester le bon fonctionnement de la classe précédente.
+
+##### Exercice 6 :
+
+Créer une classe représentant un client d’un magasin de vente par en ligne. Un client est caractérisé par son nom, son prénom, son adresse, son code postal et sa ville. Créer ensuite une méthode main permettant de tester le bon fonctionnement de la classe précédente.
+
+##### Exercice 7 :
+
+Créer une classe représentant une commande d’un magasin de vente par en ligne. Une commande est caractérisée par son numéro, sa date, le client qui passe la commande, le tableau des articles commandés et le tableau des quantités commandées pour chaque article. Créer ensuite une méthode main permettant de tester le bon fonctionnement de la classe précédente.
