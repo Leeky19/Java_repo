@@ -1,17 +1,17 @@
 import java.util.Date;
+import java.util.HashMap;
     public class Commande {
         private int numero;
         private Date date;
         private Client client;
-        private Article[] articles;
-        private int[] quantites;
 
-        public Commande(int numero, Date date, Client client, Article[] articles, int[] quantites) {
+        private HashMap<Article, Integer> articlesQuantites;
+
+        public Commande(int numero, Date date, Client client) {
             this.numero = numero;
             this.date = date;
             this.client = client;
-            this.articles = articles;
-            this.quantites = quantites;
+            this.articlesQuantites = new HashMap<>();
         }
 
     public int getNumero() {
@@ -26,11 +26,7 @@ import java.util.Date;
         return client;
     }
 
-    public Article[] getArticles() {
-        return articles;
-    }
-
-    public int[] getQuantites() {
-        return quantites;
+    public HashMap<Article, Integer> getArticlesQuantites() {
+        return articlesQuantites;
     }
 }

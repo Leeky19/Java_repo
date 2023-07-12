@@ -1,4 +1,6 @@
 import java.util.Date;
+import java.util.HashMap;
+
 public class Main {
     public static void main(String[] args) {
         // Création d'un exemple de client
@@ -17,7 +19,12 @@ public class Main {
         Date dateCommande = new Date();
 
         // Création de la commande
-        Commande commande1 = new Commande(1, dateCommande, client1, articlesCommandes, quantitesCommandes);
+        Commande commande1 = new Commande(1, dateCommande, client1);
+
+        // Ajout des articles commandés et des quantités à la commande
+        commande1.getArticlesQuantites().put(article1, 2);
+        commande1.getArticlesQuantites().put(article2, 1);
+        commande1.getArticlesQuantites().put(article3, 3);
 
         // Affichage des informations de la commande
         System.out.println("Numéro de commande : " + commande1.getNumero());
@@ -26,10 +33,10 @@ public class Main {
 
         //Affichage des articles commandés
         System.out.println("Articles commandés :");
-        Article[] articles = commande1.getArticles();
-        int[] quantites = commande1.getQuantites();
-        for (int i = 0; i < articles.length; i++) {
-            System.out.println("- " + articles[i].getDesignation() + " (Quantité : " + quantites[i] + ")");
+        HashMap<Article, Integer> articlesQuantites = commande1.getArticlesQuantites();
+        for (Article article : articlesQuantites.keySet()) { //boucle sur la totalité des articles present dans la map via les clés
+            int quantite = articlesQuantites.get(article); //assimilé à quantite la quantité de l'article
+            System.out.println("- " + article.getDesignation() + " (Quantité : " + quantite + ")"); //affiche l'article et sa quantité
         }
     }
 }
