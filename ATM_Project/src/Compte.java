@@ -24,8 +24,11 @@ public class Compte {
         if (montant <= solde) {
             solde -= montant;
             System.out.println("Retrait effectué : -" + montant);
+            System.out.println("Le solde de votre compte est de : " + solde);
+
         } else {
             System.out.println("Solde insuffisant pour effectuer le retrait");
+            System.out.println("Pour rappel, le solde de votre compte est de : " + solde);
         }
     }
 }

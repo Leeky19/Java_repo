@@ -1,6 +1,7 @@
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-       /* Partie compte
+    /*   //Partie compte
        Compte compte = new Compte("1234567890");
 
         System.out.println("Numéro de compte : " + compte.getNumero());
@@ -16,8 +17,6 @@ public class Main {
 
         compte.deposer(200.0);
         System.out.println("Solde après nouveau dépôt : " + compte.getSolde());
-
-        */
 
         //creer un nouveau client
         Client client1 = new Client("Dupont", "Jean", "10 Rue de la Paix", 75001, "Paris");
@@ -42,5 +41,87 @@ public class Main {
         System.out.println("Nouvelle adresse : " + client1.getAdresse());
         System.out.println("Nouveau code postal : " + client1.getCodePostal());
         System.out.println("Nouvelle ville : " + client1.getVille());
+
+ */
+
+        Scanner scanner = new Scanner(System.in);
+
+        // Création d'un compte et d'un client par défaut
+        Compte compte = new Compte("123456789");
+        Client client = new Client("Dupon", "Pierre", "123 Rue de la Paix", 12345, "Lyon City");
+
+        //Booleen pour quitter le programme
+        boolean fermer = false;
+        while (!fermer) {
+            System.out.println("--- ATM Menu ---");
+            System.out.println("1. Consulter le solde");
+            System.out.println("2. Déposer de l'argent");
+            System.out.println("3. Retirer de l'argent");
+            System.out.println("4. Information client");
+            System.out.println("5. Modifier les informations du client");
+            System.out.println("6. Quitter" + "\n");
+
+            System.out.print("Choisissez une option : ");
+            int choix = scanner.nextInt();
+            switch (choix) {
+                case 1:
+                    System.out.println("Solde : " + compte.getSolde());
+                    break;
+                case 2:
+                    System.out.print("Montant à déposer : ");
+                    double montantDepot = scanner.nextDouble();
+                    compte.deposer(montantDepot);
+                    break;
+                case 3:
+                    System.out.print("Montant à retirer : ");
+                    double montantRetrait = scanner.nextDouble();
+                    compte.retirer(montantRetrait);
+                    break;
+                case 4:
+                    System.out.println("--- Informations du client ---");
+                    System.out.println("Nom : " + client.getNom());
+                    System.out.println("Prénom : " + client.getPrenom());
+                    System.out.println("Adresse : " + client.getAdresse());
+                    System.out.println("Code postal : " + client.getCodePostal());
+                    System.out.println("Ville : " + client.getVille());
+                    break;
+                case 5:
+                    System.out.println("--- Modifier les informations du client ---");
+                    System.out.print("Nouveau nom : ");
+                    scanner.nextLine(); // Consomme la nouvelle ligne restante
+                    String nouveauNom = scanner.nextLine();
+                    client.setNom(nouveauNom);
+
+                    System.out.print("Nouveau prénom : ");
+                    String nouveauPrenom = scanner.nextLine();
+                    client.setPrenom(nouveauPrenom);
+
+                    System.out.print("Nouvelle adresse : ");
+                    String nouvelleAdresse = scanner.nextLine();
+                    client.setAdresse(nouvelleAdresse);
+
+                    System.out.print("Nouveau code postal : ");
+                    int nouveauCodePostal = scanner.nextInt();
+                    client.setCodePostal(nouveauCodePostal);
+
+                    System.out.print("Nouvelle ville : ");
+                    String nouvelleVille = scanner.nextLine();
+                    client.setVille(nouvelleVille);
+
+                    System.out.println("Les informations du client ont été mises à jour.");
+                    break;
+                case 6:
+                    fermer = true;
+                    break;
+                default:
+                    System.out.println("Option invalide");
+                    break;
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("Merci d'avoir utilisé l'ATM. Au revoir !");
+
     }
 }
