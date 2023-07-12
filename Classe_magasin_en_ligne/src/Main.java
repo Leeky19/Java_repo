@@ -1,23 +1,35 @@
+import java.util.Date;
 public class Main {
     public static void main(String[] args) {
-            // Création d'un exemple d'article
-            Article article1 = new Article("REF001", "Téléphone portable", 799.99);
+        // Création d'un exemple de client
+        Client client1 = new Client("Dupont", "Jean", "10 Rue de la Paix", 75001, "Paris");
 
-            //Création d'un client test
-            Client client1 = new Client("Smith","John", "36 Rue la Street", 69003,"Lyon 3ème");
+        // Création de quelques articles
+        Article article1 = new Article("REF001", "Ordinateur portable", 999.99);
+        Article article2 = new Article("REF002", "Telephone portable", 699.99);
+        Article article3 = new Article("REF003", "Casque audio", 199.99);
 
-            // Affichage des informations de l'article
-            System.out.println("Référence : " + article1.getReference());
-            System.out.println("Désignation : " + article1.getDesignation());
-            System.out.println("Prix : " + article1.getPrix());
+        // Création d'un tableau d'articles commandés et un tableau de quantités
+        Article[] articlesCommandes = {article1, article2, article3};
+        int[] quantitesCommandes = {2, 1, 3};
 
-            System.out.println();
+        // Création d'une date pour la commande
+        Date dateCommande = new Date();
 
-            //Affichage des informations du client
-            System.out.println("Nom du client : " + client1.getNom());
-            System.out.println("Prenom du client : " + client1.getPrenom());
-            System.out.println("Adresse du client : " + client1.getAdresse());
-            System.out.println("Code postal du client : " + client1.getCodePostal());
-            System.out.println("Ville du client : " + client1.getVille());
+        // Création de la commande
+        Commande commande1 = new Commande(1, dateCommande, client1, articlesCommandes, quantitesCommandes);
+
+        // Affichage des informations de la commande
+        System.out.println("Numéro de commande : " + commande1.getNumero());
+        System.out.println("Date de commande : " + commande1.getDate());
+        System.out.println("Client : " + commande1.getClient().getNom() + " " + commande1.getClient().getPrenom());
+
+        //Affichage des articles commandés
+        System.out.println("Articles commandés :");
+        Article[] articles = commande1.getArticles();
+        int[] quantites = commande1.getQuantites();
+        for (int i = 0; i < articles.length; i++) {
+            System.out.println("- " + articles[i].getDesignation() + " (Quantité : " + quantites[i] + ")");
         }
+    }
 }
