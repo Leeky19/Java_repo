@@ -49,7 +49,7 @@ public class Main {
 
         // Création d'un compte et d'un client par défaut
         Compte compte = new Compte("123456789");
-        Client client = new Client("Dupon", "Pierre", "123 Rue de la Paix", 12345, "Lyon City");
+        Client client = new Client("Dupon", "Pierre", "123 Rue de la Paix", 12345, "Lyon City",1234);
 
         //Booleen pour quitter le programme
         boolean fermer = false;
@@ -114,6 +114,7 @@ public class Main {
                     client.setCodePostal(nouveauCodePostal);
 
                     System.out.print("Nouvelle ville : ");
+                    scanner.nextLine(); // Consomme la nouvelle ligne restante
                     String nouvelleVille = scanner.nextLine();
                     client.setVille(nouvelleVille);
 

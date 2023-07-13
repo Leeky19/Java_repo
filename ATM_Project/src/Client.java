@@ -4,14 +4,15 @@ public class Client {
     private String  adresse;
     private int codePostal;
     private String ville;
-    private int codeRetrait;
+    private int codePin;
 
-    public Client(String nom, String prenom, String adresse, int codePostal, String ville) {
+    public Client(String nom, String prenom, String adresse, int codePostal, String ville, int codePin) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.ville = ville;
+        this.codePin=codePin;
     }
 
     public String getNom() {
@@ -32,12 +33,15 @@ public class Client {
     public String getVille() {
         return ville;
     }
+    public int getCodePin() {
+        return codePin;
+    }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
     public void setPrenom(String prenom) {
-        this.nom = prenom;
+        this.prenom = prenom;
     }
     public void setAdresse(String adresse){
         this.adresse = adresse;
@@ -48,5 +52,7 @@ public class Client {
     public void setVille(String ville){
         this.ville = ville;
     }
-
+    public void setCodePin(int codePin) {
+        this.codePin = codePin;
+    }
 }
