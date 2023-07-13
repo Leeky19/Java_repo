@@ -75,9 +75,15 @@ public class Main {
                     compte.deposer(montantDepot);
                     break;
                 case 3:
-                    System.out.print("Montant à retirer : ");
-                    double montantRetrait = scanner.nextDouble();
-                    compte.retirer(montantRetrait);
+                    System.out.print("Code PIN : ");
+                    int codePinRetrait = scanner.nextInt();
+                    if (codePinRetrait == client.getCodePin()) {
+                        System.out.print("Montant à retirer : ");
+                        double montantRetrait = scanner.nextDouble();
+                        compte.retirer(montantRetrait);
+                    } else {
+                        System.out.println("Code PIN invalide. Retrait annulé.");
+                    }
                     break;
                 case 4:
                     System.out.println("Historique des opérations :");
