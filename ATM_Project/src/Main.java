@@ -70,7 +70,7 @@ public class Main {
                     int codeClient = scanner.nextInt();
                     if (clients.containsKey(codeClient)) {
                         Client client = clients.get(codeClient);
-                        Compte compte = new Compte("123456789");
+                        Compte compte = new Compte(Integer.toString(codeClient));
 
                         boolean quitterClient = false; //Rester connecter
                         while (!quitterClient) {
