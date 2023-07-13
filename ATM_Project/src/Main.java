@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
     /*   //Partie compte
@@ -57,9 +58,10 @@ public class Main {
             System.out.println("1. Consulter le solde");
             System.out.println("2. Déposer de l'argent");
             System.out.println("3. Retirer de l'argent");
-            System.out.println("4. Information client");
-            System.out.println("5. Modifier les informations du client");
-            System.out.println("6. Quitter" + "\n");
+            System.out.println("4. Historique du compte client");
+            System.out.println("5. Information client");
+            System.out.println("6. Modifier les informations du client");
+            System.out.println("7. Quitter" + "\n");
 
             System.out.print("Choisissez une option : ");
             int choix = scanner.nextInt();
@@ -78,6 +80,13 @@ public class Main {
                     compte.retirer(montantRetrait);
                     break;
                 case 4:
+                    System.out.println("Historique des opérations :");
+                    ArrayList<String> historique = compte.getHistorique();
+                    for (String operation : historique) {
+                        System.out.println(operation);
+                    }
+                    break;
+                case 5:
                     System.out.println("--- Informations du client ---");
                     System.out.println("Nom : " + client.getNom());
                     System.out.println("Prénom : " + client.getPrenom());
@@ -85,7 +94,7 @@ public class Main {
                     System.out.println("Code postal : " + client.getCodePostal());
                     System.out.println("Ville : " + client.getVille());
                     break;
-                case 5:
+                case 6:
                     System.out.println("--- Modifier les informations du client ---");
                     System.out.print("Nouveau nom : ");
                     scanner.nextLine(); // Consomme la nouvelle ligne restante
@@ -110,7 +119,7 @@ public class Main {
 
                     System.out.println("Les informations du client ont été mises à jour.");
                     break;
-                case 6:
+                case 7:
                     fermer = true;
                     break;
                 default:
