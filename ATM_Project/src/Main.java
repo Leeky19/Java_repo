@@ -70,93 +70,98 @@ public class Main {
                     int codeClient = scanner.nextInt();
                     if (clients.containsKey(codeClient)) {
                         Client client = clients.get(codeClient);
-                        Compte compte = new Compte(Integer.toString(codeClient));
+                        Compte compte = new Compte(Integer.toString(codeClient)); //attends un str donc conversion de int en str
 
-                        boolean quitterClient = false; //Rester connecter
-                        while (!quitterClient) {
-                            System.out.println("--- Menu Client ---");
-                            System.out.println("--- Bienvenu " + client.getNom() + " " + client.getPrenom() + " ---");
-                            System.out.println("1. Consulter le solde");
-                            System.out.println("2. Déposer de l'argent");
-                            System.out.println("3. Retirer de l'argent");
-                            System.out.println("4. Historique du compte client");
-                            System.out.println("5. Information client");
-                            System.out.println("6. Modifier les informations du client");
-                            System.out.println("7. Déconnexion" + "\n");
+                        System.out.print("Code PIN : ");
+                        int codePin = scanner.nextInt();
+                        if (codePin == client.getCodePin()) {
+                            boolean quitterClient = false; //rester connecter
+                            while (!quitterClient) {
+                                System.out.println("\n" + "--- Menu Client ---");
+                                System.out.println("--- Bienvenu " + client.getNom() + " " + client.getPrenom() + " ---");
+                                System.out.println("1. Consulter le solde");
+                                System.out.println("2. Déposer de l'argent");
+                                System.out.println("3. Retirer de l'argent");
+                                System.out.println("4. Historique du compte client");
+                                System.out.println("5. Information client");
+                                System.out.println("6. Modifier les informations du client");
+                                System.out.println("7. Déconnexion" + "\n");
 
-                            System.out.print("Choisissez une option : ");
-                            int choixClient = scanner.nextInt();
+                                System.out.print("Choisissez une option : ");
+                                int choixClient = scanner.nextInt();
 
-                            switch (choixClient) {
-                                case 1:
-                                    System.out.println("Solde : " + compte.getSolde());
-                                    break;
-                                case 2:
-                                    System.out.print("Montant à déposer : ");
-                                    double montantDepot = scanner.nextDouble();
-                                    compte.deposer(montantDepot);
-                                    break;
-                                case 3:
-                                    System.out.print("Code PIN : ");
-                                    int codePinRetrait = scanner.nextInt();
-                                    if (codePinRetrait == client.getCodePin()) {
-                                        System.out.print("Montant à retirer : ");
-                                        double montantRetrait = scanner.nextDouble();
-                                        compte.retirer(montantRetrait);
-                                    } else {
-                                        System.out.println("Code PIN invalide. Retrait annulé.");
-                                    }
-                                    break;
-                                case 4:
-                                    System.out.println("Historique des opérations :");
-                                    ArrayList<String> historique = compte.getHistorique();
-                                    for (String operation : historique) {
-                                        System.out.println(operation);
-                                    }
-                                    break;
-                                case 5:
-                                    System.out.println("--- Informations du client ---");
-                                    System.out.println("Nom : " + client.getNom());
-                                    System.out.println("Prénom : " + client.getPrenom());
-                                    System.out.println("Adresse : " + client.getAdresse());
-                                    System.out.println("Code postal : " + client.getCodePostal());
-                                    System.out.println("Ville : " + client.getVille());
-                                    break;
-                                case 6:
-                                    System.out.println("--- Modifier les informations du client ---");
-                                    System.out.print("Nouveau nom : ");
-                                    scanner.nextLine(); // Consomme la nouvelle ligne restante
-                                    String nouveauNom = scanner.nextLine();
-                                    client.setNom(nouveauNom);
+                                switch (choixClient) {
+                                    case 1:
+                                        System.out.println("Solde : " + compte.getSolde());
+                                        break;
+                                    case 2:
+                                        System.out.print("Montant à déposer : ");
+                                        double montantDepot = scanner.nextDouble();
+                                        compte.deposer(montantDepot);
+                                        break;
+                                    case 3:
+                                        System.out.print("Code PIN : ");
+                                        int codePinRetrait = scanner.nextInt();
+                                        if (codePinRetrait == client.getCodePin()) {
+                                            System.out.print("Montant à retirer : ");
+                                            double montantRetrait = scanner.nextDouble();
+                                            compte.retirer(montantRetrait);
+                                        } else {
+                                            System.out.println("Code PIN invalide. Retrait annulé.");}
+                                        break;
+                                    case 4:
+                                        System.out.println("Historique des opérations :");
+                                        ArrayList<String> historique = compte.getHistorique();
+                                        for (String operation : historique) {
+                                            System.out.println(operation);
+                                        }
+                                        break;
+                                    case 5:
+                                        System.out.println("--- Informations du client ---");
+                                        System.out.println("Nom : " + client.getNom());
+                                        System.out.println("Prénom : " + client.getPrenom());
+                                        System.out.println("Adresse : " + client.getAdresse());
+                                        System.out.println("Code postal : " + client.getCodePostal());
+                                        System.out.println("Ville : " + client.getVille());
+                                        break;
+                                    case 6:
+                                        System.out.println("--- Modifier les informations du client ---");
+                                        System.out.print("Nouveau nom : ");
+                                        scanner.nextLine(); // Consomme la nouvelle ligne restante
+                                        String nouveauNom = scanner.nextLine();
+                                        client.setNom(nouveauNom);
 
-                                    System.out.print("Nouveau prénom : ");
-                                    String nouveauPrenom = scanner.nextLine();
-                                    client.setPrenom(nouveauPrenom);
+                                        System.out.print("Nouveau prénom : ");
+                                        String nouveauPrenom = scanner.nextLine();
+                                        client.setPrenom(nouveauPrenom);
 
-                                    System.out.print("Nouvelle adresse : ");
-                                    String nouvelleAdresse = scanner.nextLine();
-                                    client.setAdresse(nouvelleAdresse);
+                                        System.out.print("Nouvelle adresse : ");
+                                        String nouvelleAdresse = scanner.nextLine();
+                                        client.setAdresse(nouvelleAdresse);
 
-                                    System.out.print("Nouveau code postal : ");
-                                    int nouveauCodePostal = scanner.nextInt();
-                                    client.setCodePostal(nouveauCodePostal);
+                                        System.out.print("Nouveau code postal : ");
+                                        int nouveauCodePostal = scanner.nextInt();
+                                        client.setCodePostal(nouveauCodePostal);
 
-                                    System.out.print("Nouvelle ville : ");
-                                    scanner.nextLine(); // Consomme la nouvelle ligne restante
-                                    String nouvelleVille = scanner.nextLine();
-                                    client.setVille(nouvelleVille);
+                                        System.out.print("Nouvelle ville : ");
+                                        scanner.nextLine(); // Consomme la nouvelle ligne restante
+                                        String nouvelleVille = scanner.nextLine();
+                                        client.setVille(nouvelleVille);
 
-                                    System.out.println("Les informations du client ont été mises à jour.");
-                                    break;
-                                case 7:
-                                    quitterClient = true;
-                                    break;
-                                default:
-                                    System.out.println("Option invalide");
-                                    break;
+                                        System.out.println("Les informations du client ont été mises à jour.");
+                                        break;
+                                    case 7:
+                                        quitterClient = true;
+                                        break;
+                                    default:
+                                        System.out.println("Option invalide");
+                                        break;
+                                }
+
+                                System.out.println();
                             }
-
-                            System.out.println();
+                        } else {
+                            System.out.println("Code PIN invalide. Connexion annulée.");
                         }
                     } else {
                         System.out.println("Code client inconnu. Veuillez créer un nouveau client.");
