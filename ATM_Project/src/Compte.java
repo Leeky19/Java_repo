@@ -7,6 +7,7 @@ public class Compte {
     public Compte(String numero) {
         this.numero = numero;
         this.solde = 0.0;
+        this.historique=new ArrayList<>();
     }
 
     public String getNumero() {

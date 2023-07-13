@@ -4,6 +4,7 @@ public class Client {
     private String  adresse;
     private int codePostal;
     private String ville;
+    private int codeRetrait;
 
     public Client(String nom, String prenom, String adresse, int codePostal, String ville) {
         this.nom = nom;
